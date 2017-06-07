@@ -1,0 +1,27 @@
+        <div class="content">
+
+            <button ng-click="order= 'name'">Order by Name</button>
+            <button ng-click="order= 'belt'">Order by Belt</button>
+            <input type="text" ng-model="search" placeholder="Search for a developer" />
+            <ul id="developer-list">
+                <li ng-repeat="developer in developers | orderBy: order | filter: search" ng-show="developer.available">
+                    <img ng-src="{{developer.thumb}}" style="margin: -12px 10px 0 0; float: left; width: 50px;"
+                         ng-show="developer.thumb"/>
+                    <h3>{{developer.name}} - {{developer.rate | currency: '£'}}</h3>
+                    <div class="remove" ng-click="removeDeveloper(developer)">x</div>
+                    <span class="belt" style="background: {{developer.belt}}">{{developer.belt}} belt</span>
+                </li>
+            </ul>
+
+            <ninja></ninja>
+            
+            <form ng-submit="addDev()">
+                <input type="text" placeholder="name" ng-model="newdev.name" />
+                <input type="text" placeholder="belt" ng-model="newdev.belt" />
+                <input type="text" placeholder="rate" ng-model="newdev.rate" />
+                <input type="submit" value="Add new ninja" />
+            </form>
+            
+            <a href="" ng-click="removeAll()">Remove all developers...</a>
+            
+            </div>
